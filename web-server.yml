@@ -1,14 +1,11 @@
 ---
-  - name: "Test hello world"
+  - name: "Prepare web server"
     hosts: awx-client.localdomain
     remote_user: jdoe
     become: true
 
     tasks:
-      - name: "Get ls output and print"
-        shell: "ls -ltrh"
-        register: ls_result
-
-      - debug:
-          var: ls_result
-          verbosity: 2
+      - name: "Install nginx"
+        yum:
+          name: nginx
+          state: latest
