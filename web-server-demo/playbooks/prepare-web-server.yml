@@ -16,6 +16,7 @@
 
       - name: "Start nginx"
         service:
+          name: nginx
           state: started
 
       # - name: "Copy site contents"
