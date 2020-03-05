@@ -7,6 +7,8 @@
     tasks:
       - name: "Get ls output and print"
         shell: "ls -ltrh"
-        register: ls
+        register: ls_result
 
-      - debug: ls.stdout
+      - debug:
+          var: ls_result
+          verbosity: 2
