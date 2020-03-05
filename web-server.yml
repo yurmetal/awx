@@ -1,7 +1,6 @@
 ---
   - name: "Test hello world"
     hosts: awx-client.localdomain
-    user: jdoe
     remote_user: jdoe
     become: true
 
