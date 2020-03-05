@@ -1,0 +1,12 @@
+---
+  - name: "Test hello world"
+    hosts: 192.168.122.101
+    remote_user: jdoe
+    become: true
+
+    tasks:
+      - name: "Get ls output and print"
+        shell: "ls -ltrh"
+        register: ls
+
+      - debug: ls.stdout
