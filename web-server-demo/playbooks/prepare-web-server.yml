@@ -19,6 +19,15 @@
           name: nginx
           state: started
 
-      # - name: "Copy site contents"
-      #   copy:
-      #     src: {{ source_folder }}/{{ item }}
+      - name: "Copy site contents"
+        copy:
+          src: {{ source_folder }}
+          dest: {{ dest_folder }}
+        notify:
+          - Restart Nginx
+
+    handlers:
+      - name: "Restart Nginx"
+        service:
+          name: nginx
+          state: restarted
