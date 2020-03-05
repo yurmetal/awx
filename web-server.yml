@@ -1,6 +1,6 @@
 ---
   - name: "Test hello world"
-    hosts: 192.168.122.101
+    hosts: awx-client
     remote_user: jdoe
     become: true
 
