@@ -1,5 +1,7 @@
 ---
   - name: "Test hello world"
+    sudo: yes
+    sudo_user: jdoe
     hosts: awx-client.localdomain
     remote_user: jdoe
     become: true
