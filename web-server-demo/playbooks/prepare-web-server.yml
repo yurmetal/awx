@@ -5,7 +5,7 @@
     become: true
 
     vars:
-      source_folder: ./templates
+      source_folder: ../templates
       dest_folder: /usr/share/nginx/html
 
     tasks:
