@@ -21,8 +21,10 @@
 
       - name: "Copy site contents"
         copy:
-          src: "{{ source_folder }}"
-          dest: "{{ dest_folder }}"
+          src:
+           - "{{ source_folder }}"
+          dest:
+           - "{{ dest_folder }}"
         notify:
           - Restart Nginx
 
