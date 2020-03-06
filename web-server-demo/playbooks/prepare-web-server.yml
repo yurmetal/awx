@@ -5,8 +5,18 @@
     become: true
 
     vars:
-      source_folder: ../templates
-      dest_folder: /usr/share/nginx/html
+      # Used for Nginx configuration
+      src_config_folder: ../default-configs
+      dst_config_folder: /etc/nginx
+
+      # For both configuration and site templates
+      src_template_folder: ../templates
+
+      # Used for site configuration
+      dst_template_config_folder: /etc/nginx/conf.d
+
+      # Used for html, php etc.
+      dst_template_site_folder: /usr/share/nginx/html
 
     tasks:
       - name: "Install nginx"
@@ -19,10 +29,24 @@
           name: nginx
           state: started
 
-      - name: "Generate html file"
+      - name: "Copy default Nginx configuration"
+        copy:
+          src: "{{ src_config_folder }}/nginx.conf"
+          dest: "{{ dst_config_folder }}"
+        notify:
+          - Restart Nginx
+
+      - name: "Generate Nginx site configuration"
         template:
-          src: "{{ source_folder }}/sample-page.j2"
-          dest: "{{ dest_folder }}/sample-page.html"
+          src: "{{ src_template_folder }}/default.conf.j2"
+          dest: "{{ dst_template_config_folder }}/default.conf"
+        notify:
+          - Restart Nginx
+
+      - name: "Generate html files"
+        template:
+          src: "{{ src_template_folder }}/sample-page.j2"
+          dst: "{{ dst_template_site_folder }}/sample-page.html"
         notify:
           - Restart Nginx
 
