@@ -1,16 +1,16 @@
 # Nginx site configuration template
 server {
     listen 80;
-    
+
     server_name {{ ansible_hostname }};
     root {{ dst_template_site_folder }};
 
-	access_log /var/log/nginx/{{ ansible_hostname }}.access.log;
-	error_log /var/log/nginx/{{ ansible_hostname }}.error.log warn;
+    access_log /var/log/nginx/{{ ansible_hostname }}.access.log;
+    error_log /var/log/nginx/{{ ansible_hostname }}.error.log warn;
 
     location / {
-		try_files $uri $uri/ /index.html;
-	}
+        try_files $uri $uri/ /index.html;
+    }
 
     error_page 404 /404.html;
         location = /40x.html {
@@ -21,6 +21,6 @@ server {
     }
 
     location ~ /\.(?!well-known) {
-	    deny all;
+        deny all;
     }
 }
