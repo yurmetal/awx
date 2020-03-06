@@ -22,7 +22,7 @@
       - name: "Generate html file"
         template:
           src: "{{ source_folder }}/sample-page.j2"
-          dest: "{{ dest_folder }}"
+          dest: "{{ dest_folder }}/sample-page.html"
         notify:
           - Restart Nginx
 
