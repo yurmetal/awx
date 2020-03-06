@@ -46,7 +46,7 @@
       - name: "Generate html files"
         template:
           src: "{{ src_template_folder }}/sample-page.j2"
-          dst: "{{ dst_template_site_folder }}/sample-page.html"
+          dest: "{{ dst_template_site_folder }}/sample-page.html"
         notify:
           - Restart Nginx
 
