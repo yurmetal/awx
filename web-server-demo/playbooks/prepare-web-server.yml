@@ -19,9 +19,9 @@
           name: nginx
           state: started
 
-      - name: "Copy site contents"
-        copy:
-          src: "{{ source_folder }}"
+      - name: "Generate html file"
+        template:
+          src: "{{ source_folder }}/sample-page.j2"
           dest: "{{ dest_folder }}"
         notify:
           - Restart Nginx
